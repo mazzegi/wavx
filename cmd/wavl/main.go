@@ -84,8 +84,26 @@ output filter1
 sleep 2s
 `
 
+var commandsKeysPool = `
+add oscpool pool
+
+#add filter filter1 highpass 0.3 0.5
+#connect pool filter1:signal
+
+assign_keys pool
+#bind_key + filter1 cutoff:+0.01
+#bind_key - filter1 cutoff:-0.01
+#bind_key ö filter1 resonance:+0.01
+#bind_key ä filter1 resonance:-0.01
+
+#output filter1
+output pool
+sleep 2s
+`
+
 func main() {
-	buf := bytes.NewBufferString(commandsKeys)
+	//buf := bytes.NewBufferString(commandsKeys)
+	buf := bytes.NewBufferString(commandsKeysPool)
 
 	prj, err := wavl.Parse(buf)
 	handleErr(err)

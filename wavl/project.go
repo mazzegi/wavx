@@ -45,6 +45,10 @@ func (p *Project) addComponent(name string, comp wavx.InputOutputter) error {
 	return nil
 }
 
+func (p *Project) AddOscillatorPool(name string) error {
+	return p.addComponent(name, wavx.NewOscillatorPool())
+}
+
 func (p *Project) AddOscillator(name string, typ string, freq float64, ampl float64, overtones int) error {
 	return p.addComponent(name, wavx.NewStdOscillator(wavx.StdOscillatorType(typ), freq, ampl, overtones))
 }

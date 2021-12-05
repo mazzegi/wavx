@@ -113,6 +113,8 @@ func (p *parser) parseAdd(items []string) (projectFunc, error) {
 		return p.parseAddMixer(name, rest)
 	case "filter":
 		return p.parseAddFilter(name, rest)
+	case "oscpool":
+		return p.parseAddOscPool(name, rest)
 	default:
 		return nil, errors.Errorf("unknown component %q", comp)
 	}
@@ -176,6 +178,12 @@ func (p *parser) parseAddOsc(name string, items []string) (projectFunc, error) {
 func (p *parser) parseAddMixer(name string, items []string) (projectFunc, error) {
 	return func(prj *Project) error {
 		return prj.AddMixer(name)
+	}, nil
+}
+
+func (p *parser) parseAddOscPool(name string, items []string) (projectFunc, error) {
+	return func(prj *Project) error {
+		return prj.AddOscillatorPool(name)
 	}, nil
 }
 
