@@ -1,2 +1,2 @@
 # wavx
-toy synthesizer
+A tiny toy synthesizer written in Go
